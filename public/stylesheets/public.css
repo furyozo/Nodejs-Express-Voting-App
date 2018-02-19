@@ -1,6 +1,24 @@
+@font-face {
+  font-family: 'Raleway';
+  src: url("/Raleway-SemiBold.ttf"); }
+
+#public-auth {
+  margin-top: 10vh; }
+  #public-auth .glyphicon {
+    margin-right: 4px;
+    color: #66499e; }
+  #public-auth .btn {
+    background-color: #66499e;
+    border-color: #66499e; }
+
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Raleway", Helvetica, Arial, sans-serif;
   color: #000; }
 
 a {
   color: #00B7FF; }
+
+#public-navigation {
+  font-weight: 500; }
+  #public-navigation .glyphicon {
+    color: #66499e; }
