@@ -1,7 +1,48 @@
-<div class="container">
+<div id="public-index" class="container">
   <div class="row">
-    <div class="col-xs-12">
-      <h1>Example App: Index</h1>
+    <div class="col-xs-12 col-sm-5">
+
+      <div class="form-group">
+        <h3>Create a customized Poll</h3>
+      </div>
+      <form action="/poll/create" method="post" accept-charset="UTF-8" role="form">
+        <div class="form-group">
+          <input class="form-control" placeholder="Option ..." name="option[]" type="text">
+        </div>
+        <div class="form-group">
+          <input class="form-control" placeholder="Option ..." name="option[]" type="text">
+        </div>
+        <div class="form-group">
+          <input class="form-control" placeholder="Option ..." name="option[]" type="text">
+        </div>
+        <div class="form-group">
+          <input class="form-control" placeholder="Option ..." name="option[]" type="text">
+        </div>
+        <div class="form-group">
+          <input class="form-control" placeholder="Option ..." name="option[]" type="text">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-lg btn-default" type="button" name="button">Create a new Poll</button>
+        </div>
+        <div class="form-group">
+          {{#if err}}
+          <div class="alert alert-danger" role="alert">
+            <ul>
+              <li>{{err}}</li>
+            </ul>
+          </div>
+          {{/if}}
+        </div>
+      </form>
+
+      <div id="app">
+        
+      </div>
+
+    </div>
+    <div class="col-xs-12 col-sm-6 col-sm-offset-1">
+      <br><br><br><br>
+      <img class="img-responsive" src="/images/donut_graph.png" alt="">
     </div>
   </div>
 </div>

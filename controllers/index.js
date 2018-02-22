@@ -15,12 +15,7 @@ router.get('/login', function(req, res, next) {
 
 /* GET register page. */
 router.get('/register', function(req, res, next) {
-  if (!req.body.email || !req.body.username || !req.body.password || !req.body.passwordConf)  // check whether all form data was inputted
-    res.render('auth/register', {err: "some form data is missing"})
-  else if (req.body.password != req.body.passwordConf)  // check whether the password and repeated password are matching
-    res.render('auth/register', {err: "passwords are not matching"})
-  else
-    res.render('auth/register', { title: 'Express' });
+  res.render('auth/register')
 });
 
 /* login a user */
@@ -31,8 +26,14 @@ router.post('/login', function(req, res, next) {
 
 /* register a new user */
 router.post('/register', function(req, res, next) {
-  User.register(req);
-  res.send('user registered');
+  if (!req.body.email || !req.body.username || !req.body.password || !req.body.passwordConf)  // check whether all form data was inputted
+    res.render('auth/register', {err: "some form data is missing"})
+  else if (req.body.password != req.body.passwordConf)  // check whether the password and repeated password are matching
+    res.render('auth/register', {err: "passwords are not matching"})
+  else {
+    User.register(req);
+    res.render('/');
+  }
 });
 
 /* GET /logout */
