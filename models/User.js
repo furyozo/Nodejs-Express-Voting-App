@@ -43,6 +43,7 @@ UserSchema.pre('save', function (next) {
  */
 UserSchema.statics.register = function (req) {
 
+  // create a new database-inputtable object
   var userData = {
     login: req.body.login,
     email: req.body.email,
@@ -52,7 +53,7 @@ UserSchema.statics.register = function (req) {
   // use schema.create to insert data into the db
   this.create(userData, function (err, user) {
     if (err) console.log(err)
-    else console.log("Registered :]")
+    else console.log("User Registered")
   });
 
 }
@@ -60,8 +61,8 @@ UserSchema.statics.register = function (req) {
 /**
  * authenticate input against database
  */
-UserSchema.statics.authenticate = function (email, password, callback) {
-  User.findOne({ email: email })
+UserSchema.statics.login = function (email, password, callback) {
+  this.findOne({ email: email })
   .exec(function (err, user) {
     if (err) {
       return callback(err)

@@ -7,6 +7,9 @@ var Poll = require('../models/Poll.js');
 /* create a new poll */
 router.post('/create', function(req, res, next) {
   Poll.create(req);
+  res.send(req);
+  return;
+  console.log('got here');
   res.send('respond with a resource');
 })
 

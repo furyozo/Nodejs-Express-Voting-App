@@ -7,7 +7,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var exphbs  = require('express-handlebars');
 
-var routes = require('./controllers/index');
+var index = require('./controllers/index');
+var poll = require('./controllers/poll');
 var users = require('./controllers/users');
 
 var app = express();
@@ -29,7 +30,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+app.use('/', index);
+app.use('/poll', poll);
 app.use('/users', users);
 
 // catch 404 and forward to error handler

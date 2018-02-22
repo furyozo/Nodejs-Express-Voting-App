@@ -20,8 +20,9 @@ router.get('/register', function(req, res, next) {
 
 /* login a user */
 router.post('/login', function(req, res, next) {
-  User.register(req);
-  res.send('user registered');
+  User.login(req.body.email, req.body.password, function() {
+    res.send('User logged in');
+  });
 });
 
 /* register a new user */
