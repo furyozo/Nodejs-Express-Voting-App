@@ -1,10 +1,43 @@
-<div id="public-home" class="container">
+<div id="private-home" class="container">
 
   <div class="row">
     <div class="col-xs-12 col-sm-5">
 
-      <h3>Private Part!</h3>
+      <div class="form-group">
+        <h3>Create a customized Poll</h3>
+      </div>
+      <div id="public-pollForm"></div>
+      <div class="form-group">
+        {{#if err}}
+        <div class="alert alert-danger" role="alert">
+          <ul>
+            <li>{{err}}</li>
+          </ul>
+        </div>
+        {{/if}}
+      </div>
 
+      <div id="app"></div>
+
+    </div>
+    <div class="col-xs-12 col-sm-6 col-sm-offset-1">
+      <br><br><br><br>
+      <img class="img-responsive" src="/images/donut_graph.png" alt="">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h3>Your active polls:</h3>
+      <hr>
+      {{#each polls as |poll _id|}}
+
+        <div class="panel panel-default">
+          <div class="panel-heading">{{ poll.name }}</div>
+          <div class="panel-body">Panel Content</div>
+        </div>
+
+      {{/each}}
     </div>
   </div>
 

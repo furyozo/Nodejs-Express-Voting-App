@@ -4,7 +4,7 @@ var bcrypt = require('bcrypt')
 mongoose.connect('mongodb://localhost:27017/')
 
 var UserSchema = new mongoose.Schema({
-  login: {
+  name: {
     type: String,
     unique: true,
     required: true,
@@ -39,13 +39,12 @@ UserSchema.pre('save', function (next) {
 /**
  * registers a new user
  * @param  {Request} req request containing all user inputted data
- * @return {[type]}     [description]
  */
 UserSchema.statics.register = function (req) {
 
   // create a new database-inputtable object
   var userData = {
-    login: req.body.login,
+    name: req.body.name,
     email: req.body.email,
     password: req.body.password
   }
@@ -74,7 +73,8 @@ UserSchema.statics.login = function (email, password, callback) {
     bcrypt.compare(password, user.password, function (err, result) {
       if (result === true) {
         return callback(null, user);
-      } else {
+      }
+      else {
         return callback();
       }
     })

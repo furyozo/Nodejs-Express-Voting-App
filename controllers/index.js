@@ -27,7 +27,7 @@ router.post('/login', function(req, res, next) {
     else if (!user)
       res.render('auth/login', {err: "the user credentials were not found"});
     else if (user) {
-      console.log("got here");
+      req.session.cookie.expires = new Date(Date.now() + 3600000 * 24)
       req.session.auth = true;
       req.session.user = user;
       res.redirect('/home');
@@ -37,13 +37,13 @@ router.post('/login', function(req, res, next) {
 
 /* register a new user */
 router.post('/register', function(req, res, next) {
-  if (!req.body.email || !req.body.username || !req.body.password || !req.body.passwordConf)  // check whether all form data was inputted
+  if (!req.body.name || !req.body.email || !req.body.password || !req.body.repassword)  // check whether all form data was inputted
     res.render('auth/register', {err: "some form data is missing"})
-  else if (req.body.password != req.body.passwordConf)  // check whether the password and repeated password are matching
+  else if (req.body.password != req.body.repassword)  // check whether the password and repeated password are matching
     res.render('auth/register', {err: "passwords are not matching"})
   else {
     User.register(req);
-    res.render('/');
+    res.redirect('/');
   }
 });
 

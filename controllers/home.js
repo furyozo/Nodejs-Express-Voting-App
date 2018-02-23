@@ -7,7 +7,11 @@ var Poll = require('../models/Poll.js');
 
 /* create a new poll */
 router.get('/', Authenticator.isAuthenticated, function(req, res, next) {
-  res.render('home', { user: req.session.user });
+  /* needs to be moved somewhere smarter */
+  Poll.find({user_id: req.session.user._id}, (err, polls) => {
+    if (err) return err;
+    res.render('home', { user: req.session.user, polls: polls });
+  });
 })
 
 /* delete en existing poll */

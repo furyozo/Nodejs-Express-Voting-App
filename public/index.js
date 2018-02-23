@@ -988,6 +988,8 @@ module.exports = focusNode;
 
 __webpack_require__(16);
 
+__webpack_require__(34);
+
 __webpack_require__(17);
 
 /***/ }),
@@ -18348,6 +18350,12 @@ var PollForm = function (_React$Component) {
         _react2.default.createElement(
           'form',
           { action: '/poll/create', method: 'post', acceptCharset: 'UTF-8', role: 'form' },
+          _react2.default.createElement(
+            'div',
+            { className: 'form-group' },
+            _react2.default.createElement('input', { className: 'form-control poll-input', placeholder: 'Poll name ...', name: 'name', type: 'text' }),
+            _react2.default.createElement('hr', null)
+          ),
           this.inputarr.map(function (key, i) {
             var _this2 = this;
 
@@ -18383,6 +18391,16 @@ var target = document.getElementById('public-pollForm');
 if (target) {
   _reactDom2.default.render(_react2.default.createElement(PollForm, null), document.getElementById('public-pollForm'));
 }
+
+/***/ }),
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
