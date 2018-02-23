@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var exphbs  = require('express-handlebars');
 
+var home = require('./controllers/home');
 var index = require('./controllers/index');
 var poll = require('./controllers/poll');
 var users = require('./controllers/users');
@@ -31,6 +32,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+app.use('/home', home);
 app.use('/poll', poll);
 app.use('/users', users);
 

@@ -23,7 +23,6 @@ export default class PollForm extends React.Component {
     if (counter === this.state.inputCount) {
       this.inputarr.push(1);
       this.setState({ inputCount: this.state.inputCount+1 });
-      console.log(this.state.inputCount);
     }
   }
 
@@ -50,4 +49,7 @@ export default class PollForm extends React.Component {
 
 }
 
-ReactDOM.render(<PollForm />,  document.getElementById('public-pollForm'));
+var target = document.getElementById('public-pollForm');
+if (target) {
+  ReactDOM.render(<PollForm />,  document.getElementById('public-pollForm'));
+}

@@ -62,11 +62,11 @@ UserSchema.statics.register = function (req) {
  * authenticate input against database
  */
 UserSchema.statics.login = function (email, password, callback) {
-  this.findOne({ email: email })
-  .exec(function (err, user) {
+  this.findOne({ email: email }).exec(function (err, user) {
     if (err) {
-      return callback(err)
-    } else if (!user) {
+      return callback(err);
+    }
+    else if (!user) {
       var err = new Error('User not found.');
       err.status = 401;
       return callback(err);

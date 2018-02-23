@@ -26,5 +26,5 @@ a {
 
 #public-navigation {
   font-weight: 500; }
-  #public-navigation .glyphicon {
+  #public-navigation .glyphicon, #public-navigation .fa {
     color: #66499e; }

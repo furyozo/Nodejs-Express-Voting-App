@@ -18337,7 +18337,6 @@ var PollForm = function (_React$Component) {
       if (counter === this.state.inputCount) {
         this.inputarr.push(1);
         this.setState({ inputCount: this.state.inputCount + 1 });
-        console.log(this.state.inputCount);
       }
     }
   }, {
@@ -18380,7 +18379,10 @@ var PollForm = function (_React$Component) {
 exports.default = PollForm;
 
 
-_reactDom2.default.render(_react2.default.createElement(PollForm, null), document.getElementById('public-pollForm'));
+var target = document.getElementById('public-pollForm');
+if (target) {
+  _reactDom2.default.render(_react2.default.createElement(PollForm, null), document.getElementById('public-pollForm'));
+}
 
 /***/ })
 /******/ ]);

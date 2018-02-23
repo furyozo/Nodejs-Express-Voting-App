@@ -2,15 +2,12 @@ var session = require('express-session')
 var express = require('express');
 var router = express.Router();
 
+var Authenticator = require('../middlewares/Authenticate.js');
 var Poll = require('../models/Poll.js');
 
 /* create a new poll */
-router.post('/create', function(req, res, next) {
-  // Poll.create(req);
-  res.send(req.body);
-  return;
-  console.log('got here');
-  res.send('respond with a resource');
+router.get('/', Authenticator.isAuthenticated, function(req, res, next) {
+  res.render('home', { user: req.session.user });
 })
 
 /* delete en existing poll */
