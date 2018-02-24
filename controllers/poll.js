@@ -20,22 +20,13 @@ router.post('/create', function(req, res, next) {
   // create a new poll
   var poll = new Poll({
     user_id: req.session.user._id,
-    name: req.body.name
+    name: req.body.name,
+    options: options,
+    answers: []
   });
   poll.save(err => {
     if (err) return res.status(500).send(err);
   });
-
-  // create all poll options
-  for (var i = 0; i < options.length; i++) {
-    var polloption = new PollOption({
-      poll_id: poll.id,
-      name: options[i]
-    });
-    polloption.save(err => {
-      if (err) return res.status(500).send(err);
-    });
-  }
 
   res.redirect('/home');
 

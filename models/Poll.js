@@ -19,7 +19,12 @@ var PollSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true
-  }
+  },
+  options: [ String ],
+  answers: [{
+    user_id: ObjectId,
+    option: Number
+  }]
 });
 
 /**
