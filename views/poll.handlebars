@@ -13,6 +13,15 @@
         </a>
       {{/each}}
       <hr>
+      <div class="form-group">
+        {{#if err}}
+        <div class="alert alert-danger" role="alert">
+          <ul>
+            <li>{{err}}</li>
+          </ul>
+        </div>
+        {{/if}}
+      </div>
     </div>
     <div class="col-xs-12 col-sm-6">
       <canvas id="pollChart"></canvas>

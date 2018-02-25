@@ -66,7 +66,7 @@ UserSchema.statics.login = function (email, password, callback) {
       return callback(err);
     }
     else if (!user) {
-      var err = new Error('User not found.');
+      var err = new Error('user credentials not found');
       err.status = 401;
       return callback(err);
     }
