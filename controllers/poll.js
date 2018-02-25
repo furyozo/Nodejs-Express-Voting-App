@@ -42,6 +42,7 @@ router.post('/:id/edit', function(req, res, next) {
     else if (poll.user_id != req.session.user._id) res.redirect('/')
     else {
       poll.options.push(req.body.option)
+      poll.answers.push(0)
       poll.save()
       res.redirect('/home')
     }
