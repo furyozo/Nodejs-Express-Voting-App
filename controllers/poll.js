@@ -30,12 +30,21 @@ router.get('/:id', function(req, res, next) {
   })
 })
 
-/* search through existing polls */
-router.post('/search', function(req, res, next) {
-  var name = req.body.text
-  Poll.find({name: new RegExp('^'+name+'$', "i")}, function(err, polls) {
+/* add a new option to existing poll */
+router.post('/:id/edit', function(req, res, next) {
+  var id = req.params.id
+  if (req.body.option.length === 0) {
+    res.render('/home', { err: 'You need to specify the poll option' });
+    return
+  }
+  Poll.findOne({ _id: id }, (err, poll) => {
     if (err) res.status(500).send(err)
-    else res.render('index', { user: req.session.user, polls: polls });
+    else if (poll.user_id != req.session.user._id) res.redirect('/')
+    else {
+      poll.options.push(req.body.option)
+      poll.save()
+      res.redirect('/home')
+    }
   })
 })
 
@@ -45,6 +54,15 @@ router.get('/:id/delete', function(req, res, next) {
   Poll.remove({ _id: id }, (err) => {
     if (err) res.status(500).send(err)
     else res.redirect('/home')
+  })
+})
+
+/* search through existing polls */
+router.post('/search', function(req, res, next) {
+  var name = req.body.text
+  Poll.find({name: new RegExp('^'+name+'$', "i")}, function(err, polls) {
+    if (err) res.status(500).send(err)
+    else res.render('index', { user: req.session.user, polls: polls });
   })
 })
 
