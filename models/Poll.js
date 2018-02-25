@@ -21,10 +21,9 @@ var PollSchema = new mongoose.Schema({
     trim: true
   },
   options: [ String ],
-  answers: [{
-    user_id: ObjectId,
-    option: Number
-  }]
+  answers: [ Number ],
+  user_ips: [ String ],
+  created_at: { type: Date, default: Date.now }
 });
 
 /**
@@ -32,11 +31,17 @@ var PollSchema = new mongoose.Schema({
  * @param  {Poll} user_id id of the user whose polls are to be returned
  * @return {Poll} polls return poll objects specified by user_id
  */
-PollSchema.statics.getByUserID = function (user_id) {
-  this.find({user_id: user_id}, (err, polls) => {
-    if (err) return err;
-    return polls;
-  });
+PollSchema.statics = {
+
+  addAnswer: function(req) {
+    console.log("reddit")
+  },
+
+  getPollAnswers: function() {
+
+  }
+
 }
+
 
 module.exports = mongoose.model('Poll', PollSchema);

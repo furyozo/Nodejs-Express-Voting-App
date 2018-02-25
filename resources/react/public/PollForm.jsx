@@ -31,7 +31,7 @@ export default class PollForm extends React.Component {
       <div>
         <form action="/poll/create" method="post" acceptCharset="UTF-8" role="form">
           <div className="form-group">
-            <input className="form-control poll-input" placeholder="Poll name ..." name="name" type="text" />
+            <input className="form-control" placeholder="Poll name ..." name="name" type="text" />
             <hr/>
           </div>
           {

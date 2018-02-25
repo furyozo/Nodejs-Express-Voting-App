@@ -33,8 +33,27 @@
       {{#each polls as |poll _id|}}
 
         <div class="panel panel-default">
-          <div class="panel-heading">{{ poll.name }}</div>
-          <div class="panel-body">Panel Content</div>
+          <div class="panel-heading">
+            <span class="glyphicon glyphicon-signal panel-glyphicon" aria-hidden="true"></span>
+            {{ poll.name }}
+            <a href="poll/{{ poll._id }}/delete">
+              <button class="btn btn-default btn-xs panel-button" type="button" name="button">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              </button>
+            </a>
+          </div>
+          <div class="panel-body">
+            <ul class="pull-left">
+              {{#each poll.options as |option|}}
+              <li>{{ option }}</li>
+              {{/each}}
+            </ul>
+            <a href="/poll/{{ poll._id }}">
+              <button class="btn btn-default pull-right" type="button" name="button">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+              </button>
+            </a>
+          </div>
         </div>
 
       {{/each}}

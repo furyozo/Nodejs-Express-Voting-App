@@ -18359,7 +18359,7 @@ var PollForm = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'form-group' },
-            _react2.default.createElement('input', { className: 'form-control poll-input', placeholder: 'Poll name ...', name: 'name', type: 'text' }),
+            _react2.default.createElement('input', { className: 'form-control', placeholder: 'Poll name ...', name: 'name', type: 'text' }),
             _react2.default.createElement('hr', null)
           ),
           this.inputarr.map(function (key, i) {

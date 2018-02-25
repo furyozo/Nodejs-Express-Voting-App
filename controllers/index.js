@@ -2,11 +2,17 @@ var express = require('express');
 var router = express.Router();
 var session = require('express-session')
 
+var Poll = require('../models/Poll.js')
 var User = require('../models/User.js')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { user: req.session.user });
+
+  Poll.find({}).sort('-created_at').exec(function(err, polls) {
+    if (err) res.status(500).send(err)
+    else res.render('index', { user: req.session.user, polls: polls });
+  })
+
 });
 
 /* GET login page. */
