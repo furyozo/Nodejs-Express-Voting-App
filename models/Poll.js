@@ -7,7 +7,7 @@ var ObjectId = mongoose.Types.ObjectId
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
-mongoose.connect('mongodb://localhost:27017/')
+mongoose.connect('mongodb://prase:prase@ds127506.mlab.com:27506/p-poll')
 
 var PollSchema = new mongoose.Schema({
   user_id: {

@@ -48,8 +48,12 @@ router.post('/register', function(req, res, next) {
   else if (req.body.password != req.body.repassword)  // check whether the password and repeated password are matching
     res.render('auth/register', {err: "passwords are not matching"})
   else {
-    User.register(req);
-    res.redirect('/');
+    var user = User.register(req, function(err, user) {
+      req.session.cookie.expires = new Date(Date.now() + 3600000 * 24)
+      req.session.auth = true;
+      req.session.user = user;
+      res.redirect('/home');
+    });
   }
 });
 

@@ -40,7 +40,7 @@ UserSchema.pre('save', function (next) {
  * registers a new user
  * @param  {Request} req request containing all user inputted data
  */
-UserSchema.statics.register = function (req) {
+UserSchema.statics.register = function (req, callback) {
 
   // create a new database-inputtable object
   var userData = {
@@ -49,11 +49,24 @@ UserSchema.statics.register = function (req) {
     password: req.body.password
   }
 
-  // use schema.create to insert data into the db
-  this.create(userData, function (err, user) {
-    if (err) console.log(err)
-    else console.log("User Registered")
+  var User = this
+  // check if user credentials already exist
+  User.findOne({ $or: [{'name': req.body.name}, {'email': req.body.email}] }).exec(function (err, user) {
+    if (err) return callback(err)
+    else if (user) {
+      var err = new Error('user credentials not found');
+      err.status = 401;
+      return callback(err);
+    }
+    // use schema.create to insert data into the db
+    else {
+      User.create(userData, function (err, user) {
+        if (err) callback(err)
+        else callback(null, user);
+      });
+    }
   });
+
 
 }
 
