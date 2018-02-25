@@ -30,6 +30,15 @@ router.get('/:id', function(req, res, next) {
   })
 })
 
+/* search through existing polls */
+router.post('/search', function(req, res, next) {
+  var name = req.body.text
+  Poll.find({name: new RegExp('^'+name+'$', "i")}, function(err, polls) {
+    if (err) res.status(500).send(err)
+    else res.render('index', { user: req.session.user, polls: polls });
+  })
+})
+
 /* delete en existing poll */
 router.get('/:id/delete', function(req, res, next) {
   var id = req.params.id
